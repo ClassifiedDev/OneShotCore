@@ -1,0 +1,19 @@
+main: me.classified.oneshot.OneShotCore
+name: OneShotCore
+version: 1.0.0
+description: Custom core for OneShot MC.
+author: 'Classified (Classified#0001)'
+website: https://www.classifieddeveloping.com/
+softdepend: [PlotSquared]
+commands:
+  buy:
+  announce:
+  poke:
+  toggletnt:
+  rename:
+  checkplayers:
+  xray:
+  pvp:
+  walls:
+  tntfill:
+    aliases: ["tf","tntfill","fill"]

@@ -1,0 +1,64 @@
+tnt-enabled: true
+creepers-enabled: true
+
+chat_filter:
+  block_chat_until_move: true
+  no_duplicates: true
+  remove_chat_colors: false
+  bad_words:
+    - fuck
+    - shit
+    - bitch
+    - fag
+    - slut
+    - whore
+    - nigger
+    - faggot
+    - cock
+    - dick
+    - vagina
+    - penis
+    - pussy
+    - clitoris
+    - anal
+    - anus
+    - arse
+    - asshole
+    - bastard
+    - beaner
+    - bish
+    - boner
+    - chink
+    - chode
+    - clit
+    - cum
+    - ddos
+    - dike
+    - dyke
+    - ejaculate
+    - eula
+    - genitalia
+    - horny
+    - jizz
+    - lesbian
+    - lesbo
+    - mandingo
+    - masturbate
+    - nigga
+    - niggar
+    - piss
+    - skank
+    - smegma
+    - testicle
+    - testis
+    - twat
+    - wank
+    - douche
+    - blowjob
+    - cunt
+    - orgasm
+    - masturbation
+    - scrotom
+    - semen
+    - ejaculation
+    - fapp
