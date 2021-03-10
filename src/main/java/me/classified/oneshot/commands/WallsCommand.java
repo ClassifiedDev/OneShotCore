@@ -7,6 +7,8 @@ package me.classified.oneshot.commands;
  */
 
 import com.intellectualcrafters.plot.object.Plot;
+//import com.plotsquared.core.plot.Plot;
+import com.intellectualcrafters.plot.object.PlotPlayer;
 import me.classified.oneshot.OneShotCore;
 import me.classified.oneshot.utils.Utils;
 import org.apache.commons.lang.StringUtils;
@@ -41,7 +43,8 @@ public class WallsCommand implements CommandExecutor {
         if (command.getName().equalsIgnoreCase("walls") && sender instanceof Player) {
             subject = (Player)sender;
             if (subject.hasPermission("oneshot.walls")) {
-                Plot plot = OneShotCore.getPlotAPI().getPlot(subject.getLocation());
+                Plot plot = Plot.getPlot(PlotPlayer.wrap(subject).getLocation());
+
                 if (plot == null) {
                     subject.sendMessage(Utils.color("&c&l(!) &cYou must be in your plot to use this command."));
                     return false;

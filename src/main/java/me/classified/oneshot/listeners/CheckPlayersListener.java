@@ -26,7 +26,7 @@ public class CheckPlayersListener implements Listener {
                 if (CheckPlayersCommand.activeCheck.get(e.getPlayer()) > CheckPlayersCommand.online.size()-1) {
                     CheckPlayersCommand.activeCheck.remove(p);
                     p.sendMessage(ChatColor.translateAlternateColorCodes('&',
-                            "&3&l(!)&7 Check players is toggled &c&lOFF"
+                            "&3&l(!)&3 Check players is toggled &c&lOFF"
                     ));
                 } else {
                     if (CheckPlayersCommand.activeCheck.get(e.getPlayer()) < 0) {

@@ -15,5 +15,6 @@ commands:
   xray:
   pvp:
   walls:
+  corner:
   tntfill:
     aliases: ["tf","tntfill","fill"]

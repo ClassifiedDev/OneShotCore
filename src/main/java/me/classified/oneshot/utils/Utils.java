@@ -6,12 +6,24 @@ package me.classified.oneshot.utils;
  * PROJECT: OneShotPatches
  */
 
-import com.mojang.authlib.GameProfile;
-import com.mojang.authlib.properties.Property;
+//import com.mojang.authlib.GameProfile;
+//import com.mojang.authlib.properties.Property;
+import com.sk89q.worldedit.EditSession;
+import com.sk89q.worldedit.LocalSession;
+import com.sk89q.worldedit.WorldEdit;
+import com.sk89q.worldedit.bukkit.BukkitPlayer;
+import com.sk89q.worldedit.bukkit.WorldEditPlugin;
+import com.sk89q.worldedit.entity.Entity;
+import com.sk89q.worldedit.event.extent.EditSessionEvent;
+import com.sk89q.worldedit.extent.clipboard.Clipboard;
+import com.sk89q.worldedit.session.ClipboardHolder;
+import com.sk89q.worldedit.util.eventbus.Subscribe;
+import com.sk89q.worldguard.LocalPlayer;
 import com.sk89q.worldguard.bukkit.WorldGuardPlugin;
 import com.sk89q.worldguard.protection.ApplicableRegionSet;
 import com.sk89q.worldguard.protection.managers.RegionManager;
 import com.sk89q.worldguard.protection.regions.ProtectedRegion;
+import me.classified.oneshot.OneShotCore;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.Material;

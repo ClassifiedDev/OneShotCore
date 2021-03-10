@@ -6,13 +6,23 @@ package me.classified.oneshot;
  * PROJECT: OneShotCore
  */
 
-import com.intellectualcrafters.plot.api.PlotAPI;
+//import com.intellectualcrafters.plot.api.PlotAPI;
+//import com.plotsquared.core.api.PlotAPI;
+import com.sk89q.worldedit.EditSession;
+import com.sk89q.worldedit.LocalSession;
+import com.sk89q.worldedit.bukkit.WorldEditPlugin;
+import com.sk89q.worldedit.entity.Entity;
+import com.sk89q.worldedit.event.extent.EditSessionEvent;
+import com.sk89q.worldedit.extent.clipboard.Clipboard;
+import com.sk89q.worldedit.session.ClipboardHolder;
+import com.sk89q.worldedit.util.eventbus.Subscribe;
 import me.classified.oneshot.chatfilter.ChatFilter;
 import me.classified.oneshot.chatfilter.ChatFilterListener;
 import me.classified.oneshot.commands.*;
 import me.classified.oneshot.listeners.*;
 import me.classified.oneshot.pvp.PvPCommand;
 import me.classified.oneshot.pvp.PvPListener;
+import me.classified.oneshot.utils.Utils;
 import org.bukkit.Bukkit;
 import org.bukkit.command.defaults.ListCommand;
 import org.bukkit.configuration.InvalidConfigurationException;
@@ -33,17 +43,19 @@ public class OneShotCore extends JavaPlugin {
     private static File configFile;
     private static FileConfiguration config;
     private static Plugin instance;
-    private static PlotAPI plotAPI;
+    public static WorldEditPlugin wep;
+    //private static PlotAPI plotAPI;
 
     public void onEnable(){
         PluginDescriptionFile pdfFile = getDescription();
         Logger logger = getLogger();
         instance = this;
+        wep = (WorldEditPlugin) Bukkit.getServer().getPluginManager().getPlugin("WorldEdit");
         generateConfigs();
         registerCommands();
         registerEvents();
         new ChatFilter();
-        plotAPI = new PlotAPI();
+        fixEntityEdits();
         logger.info(pdfFile.getName() + " has been ENABLED " + pdfFile.getVersion() + " (Developed by: " + pdfFile.getAuthors() + ")");
     }
 
@@ -68,12 +80,13 @@ public class OneShotCore extends JavaPlugin {
         getCommand("announce").setExecutor(new AnnounceCommand());
         getCommand("toggletnt").setExecutor(new ToggleTnTCommand());
         getCommand("checkplayers").setExecutor(new CheckPlayersCommand());
+        getCommand("corner").setExecutor(new CornerCommand());
     }
 
     private void registerEvents(){
         PluginManager pm = Bukkit.getServer().getPluginManager();
         pm.registerEvents(new PvPListener(), this);
-        pm.registerEvents(new HelpCommand(), this);
+        //pm.registerEvents(new HelpCommand(), this);
         pm.registerEvents(new JoinListener(), this);
         pm.registerEvents(new AutoBroadcast(), this);
         pm.registerEvents(new WeatherHandler(), this);
@@ -84,9 +97,26 @@ public class OneShotCore extends JavaPlugin {
         pm.registerEvents(new CheckPlayersListener(), this);
     }
 
-    public static PlotAPI getPlotAPI() {
-        return plotAPI;
+    public static void fixEntityEdits() {
+        OneShotCore.wep.getWorldEdit().getEventBus().register(new Object() {
+            @Subscribe
+            public void onEditSessionEvent(EditSessionEvent event) {
+                if (event.getStage() == EditSession.Stage.BEFORE_CHANGE) {
+                    try {
+                        LocalSession s = OneShotCore.wep.getSession(Bukkit.getServer().getPlayer(event.getActor().getUniqueId()));
+                        Clipboard c = s.getClipboard().getClipboard();
+                        for (Entity en : c.getEntities()) { en.remove(); }
+                        ClipboardHolder ch = (ClipboardHolder) c;
+                        s.setClipboard(ch);
+                    } catch (Exception ignored) {}
+                }
+            }
+        });
     }
+
+//    public static PlotAPI getPlotAPI() {
+//        return plotAPI;
+//    }
 
     private void generateConfigs(){
         File fileFile;
@@ -128,5 +158,6 @@ public class OneShotCore extends JavaPlugin {
         config = YamlConfiguration.loadConfiguration(configFile);
         saveConfigFile();
     }
+
 
 }

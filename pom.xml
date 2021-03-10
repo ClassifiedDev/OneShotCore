@@ -12,29 +12,68 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
 
+    <repositories>
+        <repository>
+            <id>spigot-repo</id>
+            <url>https://hub.spigotmc.org/nexus/content/repositories/snapshots/</url>
+        </repository>
+        <repository>
+            <id>enginehub-maven</id>
+            <url>http://maven.enginehub.org/repo/</url>
+        </repository>
+        <repository>
+            <id>fawe-repo</id>
+            <url>http://ci.athion.net/job/FastAsyncWorldEdit/ws/mvn/</url>
+        </repository>
+<!--        <repository>-->
+<!--            <id>IntellectualSites</id>-->
+<!--            <url>https://mvn.intellectualsites.com/content/groups/public/</url>-->
+<!--        </repository>-->
+        <repository>
+            <id>plotsquared</id>
+            <url>https://plotsquared.com/mvn/</url>
+        </repository>
+    </repositories>
+
     <dependencies>
         <dependency>
-            <groupId>com.oneshot.server</groupId>
-            <artifactId>OneShotServer</artifactId>
-            <version>1.8.8-1</version>
+            <groupId>org.spigotmc</groupId>
+            <artifactId>spigot-api</artifactId>
+            <version>1.8.8-R0.1-SNAPSHOT</version>
             <scope>provided</scope>
         </dependency>
         <dependency>
-            <groupId>com.plotsquared.bukkit</groupId>
-            <artifactId>PlotSquared</artifactId>
-            <version>20.01.24</version>
+            <groupId>com.boydti</groupId>
+            <artifactId>fawe-api</artifactId>
+            <version>latest</version>
             <scope>provided</scope>
         </dependency>
         <dependency>
-            <groupId>com.worldguard</groupId>
-            <artifactId>WorldGuard</artifactId>
+            <groupId>com.plotsquared</groupId>
+            <artifactId>plotsquared-api</artifactId>
+            <version>3.1</version>
+        </dependency>
+<!--        <dependency>-->
+<!--            <groupId>com.plotsquared</groupId>-->
+<!--            <artifactId>PlotSquared-Core</artifactId>-->
+<!--            <version>5.13.3</version>-->
+<!--        </dependency>-->
+        <dependency>
+            <groupId>com.sk89q.worldedit</groupId>
+            <artifactId>worldedit-core</artifactId>
+            <version>6.1.4-SNAPSHOT</version>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>com.sk89q.worldedit</groupId>
+            <artifactId>worldedit-bukkit</artifactId>
+            <version>6.1.5</version>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>com.sk89q</groupId>
+            <artifactId>worldguard</artifactId>
             <version>6.1</version>
-            <scope>provided</scope>
-        </dependency>
-        <dependency>
-            <groupId>com.worldedit</groupId>
-            <artifactId>WorldEdit</artifactId>
-            <version>6.1.7</version>
             <scope>provided</scope>
         </dependency>
     </dependencies>
